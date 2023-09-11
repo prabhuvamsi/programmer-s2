@@ -1,0 +1,233 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tic Tac Toe</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            grid-gap: 5px;
+            text-align: center;
+            background-color: #222;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .cell {
+            width: 100px;
+            height: 100px;
+            font-size: 36px;
+            cursor: pointer;
+            border: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #444;
+            color: #fff;
+        }
+
+        #result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .win-text {
+            color: green;
+        }
+
+        .draw-text {
+            color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tic Tac Toe</h1>
+    <div class="board" id="board"></div>
+    <p id="result"></p>
+
+    <script>
+        const board = document.getElementById("board");
+        const cells = [];
+        const resultDisplay = document.getElementById("result");
+        let currentPlayer = "X";
+        let winner = null;
+
+        // Create the game board
+        for (let i = 0; i < 9; i++) {
+            const cell = document.createElement("div");
+            cell.classList.add("cell");
+            cell.dataset.index = i;
+            cell.addEventListener("click", () => handleCellClick(i));
+            board.appendChild(cell);
+            cells.push(cell);
+        }
+
+        // Winning combinations
+        const winningCombinations = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ];
+
+        function handleCellClick(index) {
+            if (cells[index].textContent !== "" || winner) return;
+
+            cells[index].textContent = currentPlayer;
+            checkWin();
+            currentPlayer = currentPlayer === "X" ? "O" : "X";
+        }
+
+        function checkWin() {
+            for (const combination of winningCombinations) {
+                const [a, b, c] = combination;
+                if (cells[a].textContent && cells[a].textContent === cells[b].textContent && cells[a].textContent === cells[c].textContent) {
+                    winner = cells[a].textContent;
+                    resultDisplay.textContent = `Player ${winner} wins!`;
+                    resultDisplay.classList.add("win-text"); // Apply green color
+                    return;
+                }
+            }
+
+            if ([...cells].every(cell => cell.textContent)) {
+                resultDisplay.textContent = "It's a draw!";
+                resultDisplay.classList.add("draw-text"); // Apply yellow color
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+ -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tic Tac Toe</title>
+     <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            grid-gap: 5px;
+            text-align: center;
+            background-color: #222;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .cell {
+            width: 100px;
+            height: 100px;
+            font-size: 36px;
+            cursor: pointer;
+            border: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #444;
+            color: #fff;
+        }
+    </style>
+   
+</head>
+<body>
+    <h1>Tic Tac Toe</h1>
+    <div class="board" id="board"></div>
+    <p id="result"></p>
+
+    <script>
+        const board = document.getElementById("board");
+        const cells = [];
+        const resultDisplay = document.getElementById("result");
+        let currentPlayer = "X";
+        let winner = null;
+
+        // Create the game board
+        for (let i = 0; i < 9; i++) {
+            const cell = document.createElement("div");
+            cell.classList.add("cell");
+            cell.dataset.index = i;
+            cell.addEventListener("click", () => handleCellClick(i));
+            board.appendChild(cell);
+            cells.push(cell);
+        }
+
+        // Winning combinations
+        const winningCombinations = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ];
+
+        function handleCellClick(index) {
+            if (cells[index].textContent !== "" || winner) return;
+
+            cells[index].textContent = currentPlayer;
+            checkWin();
+            currentPlayer = currentPlayer === "X" ? "O" : "X";
+        }
+
+        function checkWin() {
+            for (const combination of winningCombinations) {
+                const [a, b, c] = combination;
+                if (cells[a].textContent && cells[a].textContent === cells[b].textContent && cells[a].textContent === cells[c].textContent) {
+                    winner = cells[a].textContent;
+                    resultDisplay.textContent = `Player ${winner} wins!`;
+                resultDisplay.style.color="green"
+                resultDisplay.style.fontSize="50px"
+
+                    return;
+                }
+            }
+
+            if ([...cells].every(cell => cell.textContent)) {
+                resultDisplay.textContent = "It's a draw!";
+                resultDisplay.style.color="orange"
+                resultDisplay.style.fontSize="50px"
+                
+            }
+        }
+    </script>
+</body>
+</html> 
